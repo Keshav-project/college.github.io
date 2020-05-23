@@ -1,1 +1,0 @@
-# college.github.io
