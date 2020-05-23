@@ -1,0 +1,490 @@
+<html>
+  <head>
+     <meta charset="utf-8">
+    <title>Student Information System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <script src="check.js"></script>  
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet"><script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="mystyle.css">      
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+function ChangeCaptcha() {
+  var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+  var string_length = 6;
+  var ChangeCaptcha = '';
+  for (var i=0; i<string_length; i++) {
+    var rnum = Math.floor(Math.random() * chars.length);
+    ChangeCaptcha += chars.substring(rnum,rnum+1);
+  }
+  document.getElementById('randomfield').value = ChangeCaptcha;
+}
+function check() {
+if(document.getElementById('CaptchaEnter').value == document.getElementById('randomfield').value ) {
+//window.open('https://www.google.co.in','_self');
+}
+else {
+alert('Please re-check the captcha');
+}
+}
+
+function reloadCaptcha()
+{
+  img = document.getElementById('captcha1');
+  img.src = ChangeCaptcha();
+}
+
+
+
+function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) 
+                {
+                    $('#showpic').attr('src', e.target.result);
+                    $('#showpic').show();
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+          $(document).ready(function()
+          {
+            $('#other').click(function(){
+              $('#others').show();
+            });
+          });
+
+
+    </script>
+
+
+
+
+
+  </head>
+  <body onload="ChangeCaptcha();" background="photo/t5eKUtv.jpg" >
+
+
+    <nav class="nav navbar-inverse" >
+  <div class="container ">
+    
+     <div class="navbar-header"> 
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="visible-lg navbar-brand" href="#"></a>
+            </div>
+      <div class="collapse navbar-collapse" id="nav1" >
+      <div class="nav navbar-nav ">
+     <li class="h4"><a href="index.php" class="btn btn-success"><font color="white">Home </font>&nbsp;&nbsp;</a></li>
+    <li class="h4"><a href="student_login.php" class="btn btn-success"><font color=white>Student Login</font>&nbsp;&nbsp;</a></li>
+    <li class="h4"><a href="admin_login.php" class="btn btn-success"><font color=white>Administrator Login </font>&nbsp;&nbsp;</a></li>
+    <li class="h4"><a href="stu_reg.html" class="btn btn-success"><font color=white>Student Registration </font>&nbsp;&nbsp;</a></li>
+    </div>
+  
+  </div>
+  </div>
+
+ </nav>
+    <div class="vertical-center">
+      <div class="container">
+        <div class="row">
+          <!-- well is for setting the page in middle  search bootstrap/components/well -->
+          <div class=" col-lg-10 col-lg-offset-1 col-md-4 col-md-offset-4 well">
+              <div class="panel panel-primary">
+                  <div class="panel-heading"><h1 class="text-center">Student Registration</h1></div>
+              </div>
+
+            
+            <form name="register" method="post" action="process.php" enctype="multipart/form-data" onsubmit="return validateForm()">
+              <div id="panel">
+                        <div class="panel panel-success">
+      <div class="panel-heading"><h2 class="text-center">Personal information</h2></div>
+    </div>
+   
+              <div class="form-group">
+                <label>First name: <font color="red">*</font></label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="fname" onblur="checkFname()" class="form-control" placeholder="Firstname"/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Middle name: </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="mname" class="form-control" placeholder="Middlename"/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Last name: <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="lname" onblur="checkLname()" class="form-control" placeholder="Lastname"/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Contact no: <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-phone"></i>
+                  </span>
+
+                  <input type="text" name="contact" onblur="checkContact()" maxlength="10" class="form-control" placeholder="Contact No."/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Date of birth: <font color="red">*</font> </label>
+              <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </span>
+
+                  <input type="date" name="birthday" onblur="generateAge()"class="form-control" placeholder="Date of Birth"/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Age: <font color="red">*</font> </label>
+              <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="age" onfocus="generateAge()" class="form-control" placeholder="Age in Year, Month and Days "/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Gender: <font color="red">*</font> </label>
+              <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+
+                  <td><input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female</td>
+
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Upload photo: <font color="red">*</font> </label>
+              <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-picture"></i>
+                  </span>
+
+                  <input type="file" name="image" class="form-control" placeholder="photo" accept="image/*" onchange="loadFile(event)" />
+                  <img id="output" style="width:200;" />
+                  <script type="text/javascript">
+                    var loadFile = function(event){
+                      var output = document.getElementById('output');
+                      output.src = URL.createObjectURL(event.target.files[0]);
+                    };
+
+                  </script>
+
+                </div>
+              </br></br>
+                <div class="form-group">
+                <label>Hobbies: <font color="red">*</font> </label>
+              <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                  </span>
+                  <label  name="hobbies" >
+                            <input type="checkbox" name="txtHobbi[]" class="checkbox-custom" value="Music" />Music
+                            <input type="checkbox" name="txtHobbi[]" class="checkbox-custom" value="Reading" />Reading
+                            <input type="checkbox" name="txtHobbi[]" class="checkbox-custom" value="Art" />Art
+                            <input type="checkbox" name="txtHobbi[]" class="checkbox-custom" value="Sports" />Sports
+                            <input type="checkbox"  id="other" class="checkbox-custom" />Others
+
+                 
+                </div>
+                <div class="row">
+                        <div class="col-md-5">
+                            <input type="textArea" name="txtHobbi[]" class="form-control" id="others" style="display:none;" />
+                        </div>    
+                    </div>
+                 
+                    <br/><br/><br/>
+
+                    <div class="panel panel-success">
+                      <div class="panel-heading"><h2 class="text-center">Registration information</h2></div>
+                    </div>
+    
+                    <div class="form-group">
+                         <label>Registration no : <font color="red">*</font> </label>
+                        <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input  type="text" name="reg_no" onblur="checkRegNo()" class="form-control" placeholder="Registration No."/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Department : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-oil"></i>
+                  </span>
+                  <select name="dept" required="select department" onblur="generateRoll()">
+                  <option>&nbsp;</option>
+                  <option value="Biotechnology">Biotechnology</option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Chemical Engineering">Chemical Engineering</option>
+                  <option value="Computer Science Engineering">Computer Science Engineering</option>
+                  <option value="Electronics And Communication Engi">Electronics And Communication Engi</option>
+                  <option value="Electrical Engineering">Electrical Engineering</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                  <option value="Metallurgical And Materials Engineering">Metallurgical And Materials Engineering</option>
+                </select><br>
+
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Roll Number : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="roll_no" onfocus="generateRoll()" onblur="checkRoll()"  class="form-control" placeholder="Roll No."/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>Semester : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-book"></i>
+                  </span>
+                  <select name="sem">
+                  <option>&nbsp;</option>
+                  <option value="First Sem">First Semester</option>
+                  <option value="Second Sem">Second Semester</option>
+                  <option value="Third Sem">Third Semester</option>
+                  <option value="Forth Sem">Forth Semester</option>
+                  <option value="Fifth Sem">Fifth Semester</option>
+                  <option value="Sixth Sem">Sixth Semester</option>
+                  <option value="Seventh Sem">Seventh Semester</option>
+                  <option value="Eight Sem">Eight Semester</option>
+                </select>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>10th percentage(%)  : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="percent1"    class="form-control" placeholder="percent shoulbe be like 80.00,79.25 after [.] maximum 2 digit,  don't write % after 79.25"/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>12th percentage(%) : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="percent2"    class="form-control" placeholder="percent shoulbe be like 80.00,79.25 after [.] maximum 2 digit,  don't write % after 79.25 "/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>CGPA : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input type="text" name="cgpa"    class="form-control" placeholder="your sem total cgpa like 7.98 "/>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <label>Email : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-envelope"></i>
+                  </span>
+
+                  <input  type="email" name="email" onblur="validateEmail()" class="form-control" placeholder="Email id "/>
+                </div>  
+              </div>
+              <div class="form-group">
+                <label>User name : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>
+
+                  <input  type="text" name="username" onkeyup="checkUser(this.value)" class="form-control" placeholder="User name "/>
+                  </div>
+                  <div>
+			<p>Info: <span style="color:#FF0000" id="info"></span></p>
+		  </div>  
+              </div>
+              <div class="form-group">
+                <label>Password  : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                  </span>
+
+                  <input type="password" minlength="8" name="pass" class="form-control" placeholder="Password should be atleast 8 letters "/>
+                </div>  
+              </div>
+
+               <div class="form-group">
+                <label>Confirm Password : <font color="red">*</font> </label>
+                <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+                  <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-lock"></i>
+                  </span>
+
+                  <input  type="password" minlength="8" equalto="#pass" name="cpass" onblur="checkPassword()" class="form-control" placeholder="Password should match "/>
+                </div>  
+              </div>
+              <div class="form-group">
+                           <div class="input-group">
+                  <!-- this is for user icon search bootstrap/components -->
+
+                  <label for="captcha">Captcha: </label>
+                  <input type="text" id="randomfield" disabled>
+                <img id = 'captcha1' src = "refresh.jpg"  style="width: auto; height: auto;max-width: 50px;max-height: 50px" alt = "refresh captcha" onError = "this.src = 'refresh.jpg';" onClick = "reloadCaptcha()"/><p>Click here the refresh button <span style="color:#00ffff" ></span></p>
+                <br/><br/><br/>
+
+                  <label for="enterCaptcha">Enter the Captcha as shown: </label>
+                  <input id="CaptchaEnter" size="10" maxlength="6" onBlur="check()"/>
+                </div>  
+              </div>
+
+
+
+
+              <div class="form-group">
+                
+                <td><input type="submit" name="register" value="Register" onclick="alert(ValidCaptcha());" class="btn btn-success btn-block"></td>
+                <td><input type="reset" name="reset" value="Reset" onclick="alert(ValidCaptcha());" class="btn btn-success btn-block"></td>
+              </div>
+  
+            </form>
+
+           
+        
+          </div>
+
+                  
+          </div> 
+
+        </div>
+        
+      </div>
+  
+    </div>
+    <br/><br/>
+   
+
+        <br/><br/><br/><br/><br/><br/><br/>
+       <div class="container site-footer-container" >
+    <ul class="site-footer-links">
+     
+        
+      <p><font color="white">© National Institute of Technology, Durgapur ® All Rights Reserved </font><span ></p>
+      <br/><br/>
+           
+              <div class="row">
+               
+              <div class="col-md-1"><li><a href="blog.html" data-ga-click="Footer, go to blog, text:blog"><span>
+                    <i class="glyphicon glyphicon-pencil"></i>
+                  </span>Blog</a></li></div>
+         <div class="col-md-1">
+          <li><a href="aboutus.html" data-ga-click="Footer, go to about, text:about"><span>
+                    <i class="glyphicon glyphicon-user"></i>
+                  </span>About</a></li>
+          </div>
+         <div class="col-md-1">
+        <li><a href="terms.html" data-ga-click="Footer, go to terms, text:terms"><span>
+                    <i class="glyphicon glyphicon-asterisk"></i>
+                  </span>Terms</a></li>
+        </div>
+         <div class="col-md-1">
+        <li><a href="http://www.nitdgp.ac.in/contact_us.php" data-ga-click="Footer, go to contact, text:contact">
+                    <span>
+                    <i class="glyphicon glyphicon-earphone"></i>
+                  </span>Contact
+        </a></li>
+      </div>
+      <div class="col-md-1">
+        <li><a href="help.html" data-ga-click="Footer, go to help, text:help">
+          <span>
+              <i class="glyphicon glyphicon-phone-alt"></i>
+          </span>Help
+        </a></li>
+      </div></br></br>
+    </div>
+     
+  
+    </ul>
+</div>
+</br></br></br>
+        <li>
+  
+       <a href="https://twitter.com/nitdurgapur" class="btn btn-twitter">
+    <i class="fa fa-twitter"></i>| Connect with Twitter Page
+  </a>
+</li>
+  
+  <li>
+    
+  <a href="http://www.nitdgp.ac.in/" class="btn btn-google">
+    <i class="fa fa-google"></i>| Connect with  Google Page
+  </a>
+  </li>
+  <li>
+    
+  <a href="https://www.facebook.com/groups/718937774827583/" class="btn btn-facebook">
+    <i class="fa fa-facebook"></i> | Connect with Facebook Page
+  </a>
+
+  </li>
+  
+    
+      
+  </body>
+</html>

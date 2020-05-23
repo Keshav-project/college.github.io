@@ -1,0 +1,30 @@
+body {
+
+    background-color: #AAAAAA;
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    #bg { position: fixed; top: 0; left: 0; }
+.bgwidth { width: 100%; }
+.bgheight { height: 100%; }
+}
+* { margin: 1px; padding: 1px; }
+ul { margin: 20px 0px; }
+ul li { float: left; list-style-type: none; }
+ul li a { background: black; color: white; display: block; font-family: 'Arial', Helvetica, sans-serif; padding: 10px 20px; text-decoration: none; }
+ul li a:hover { background: #696969; }
+#form{
+	float: center;
+}
+#randomfield { 
+-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+  width: 200px;
+  color: black;
+  border-color: black;
+  text-align: center;
+  font-size: 40px;
+  background-image: url(registration.jpg);
+}
